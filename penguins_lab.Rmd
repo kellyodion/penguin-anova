@@ -44,3 +44,10 @@ penguins2
 - Exploratory graphs 
 - Summary statistics 
 - Levene's tests for equal variances
+```{r}
+hists <- ggplot(penguins2, aes(x = flipper_length)) + 
+  geom_histogram(aes(fill = common_name))
+
+hists
+```
+
