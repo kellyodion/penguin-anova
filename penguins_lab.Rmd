@@ -76,3 +76,28 @@ penguin_var <- penguins2 %>%
 penguin_var
 ```
 
+#3. One-way ANOVA
+
+Single factor: common_name
+Number of levels: 3 (Chinstrap, Gentoo, Adelie)
+Random Variable: flipper_length (mm) 
+
+Is there a signficant difference in mean flipper length (mm) for female Chinstrap, Gentoo, and Adelie penguins? 
+
+```{r}
+#H0: The means are equal 
+#Ha: At least one pair of means is not equal(at LEAST two means differ significantly)
+
+penguin_aov <- aov(flipper_length ~ common_name, data = penguins2)
+
+summary(penguin_aov)
+
+#if we take samples from these populations and they acutally have the same mean, then there is a very very small chance that we could have taken these samples and gotten means as different as we did. Which ones are different? All three are different from each other? Or something else?
+
+#Post-hoc testing using Tukey's HSD
+
+penguin_ph <- TukeyHSD(penguin_aov)
+penguin_ph
+```
+
+Mean flipper lengths for Adelie, Gentoo, and Chinstrap penguins are all significantly different (F(df) = statistic, p <0.001, alpha= 0.05 with post-hoc Tukey's HSD, $\alpha = 0.05$, 
